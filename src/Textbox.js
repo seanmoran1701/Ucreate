@@ -1,7 +1,7 @@
 import { Box, TextField } from '@mui/material'
 
 const boxStyle = {
-	color: 'white'
+	color: 'black'
 }
 export default function Textbox() {
 	const getText = (e) => {
