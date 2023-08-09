@@ -3,7 +3,31 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios'
 import Textbox from './Textbox'
 import './App.css';
+import Button from '@mui/material/Button';
+import { Link } from 'react-router-dom';
 import DisplayImage from './DisplayImage';
+
+
+
+function setModelPost() {
+    console.log(sessionStorage.getItem('model'));
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ sd_model_checkpoint: `${sessionStorage.getItem('model')}` })
+    };
+
+    changeModel(requestOptions);
+
+}
+function changeModel(requestOptions) {
+    fetch('http://127.0.0.1:7860/sdapi/v1/options', requestOptions)
+        .then(response => {
+            response.json()
+        }
+        );
+}
+
 
 function setImagePost(){
     const requestOptions = {
@@ -26,95 +50,28 @@ function GenerateImage(requestOptions) {
         
 }
 
-
-/*const options = {
-    method: 'POST',
-    url: 'http://127.0.0.1:7860/sdapi/v1/txt2img',
-    params: {},
-    headers: {
-        Accept: 'application/json'
-    },
-    data: [
-        {
-            cfg: 5,
-            steps: 5,
-            prompt: 'pink hair',
-            
-        },
-    ],
-};
-
-function GenerateImage() {
-    axios
-        .request(options)
-        .then(function (response) {
-            sessionStorage.setItem('image', response.data.images[0]);
-
-            console.log(response.data.images[0]);
-            window.location.reload(false);
-        })
-        .catch(function (error) {
-            console.error(error);
-        });
-}*/
-
-/*function GenerateImage() {
-//const [images, setImages] = useState([]);
-    sessionStorage.removeItem('image');
-        axios
-            .post('http://127.0.0.1:7860/sdapi/v1/txt2img', {
-                headers: {
-                    Accept: 'application/json',
-                }
-            },
-                
-        )
-    
-            .then((response) => {
-
-                sessionStorage.setItem('image', response.data.images[0]);
-
-                console.log(response.data.images[0]);
-                window.location.reload(false);
-            })
-            .catch((error) => console.log(error));
-
-   //// <img src={`data:image/jpeg;base64,${sessionStorage.getItem('image')}`} />
-}*/
-
-
 function App(props) {
-    
-    const [models, setModels] = useState([]);
     const [image, setImage] = useState([]);
 
-
-    
-
     useEffect(() => {
-        if (models) {
-            axios
-                .get('http://127.0.0.1:7860/sdapi/v1/sd-models', {
-                    headers: {
-                        Accept: 'application/json'
-                    }
-                })
-                .then((response) => {
-                    
-                    console.log(response.data);
-                })
-                .catch((error) => console.log(error));
-        }
-    },
-        [models]
-    );
+        let ignore = false;
 
-  return (
+        if (!ignore) setModelPost()
+        return () => { ignore = true; }
+    }, []);
+
+    return (
+      
     <div className="App">
       <header className="App-header">
+                <p style={{ position: 'absolute', top: 10, left: 10 }}>
+                    <Link to="/">
+                        <Button variant="contained">Back to Models</Button>
+                    </Link>
+                 </p>
               <img src={`data:image/jpeg;base64,${sessionStorage.getItem('image')}`} />
               <Textbox />
-              <button onClick={() => setImagePost()}>Submit</button>
+                <Button variant="contained" onClick={() => setImagePost()}>Submit</Button>
       </header>
           <textbox />
     </div>
