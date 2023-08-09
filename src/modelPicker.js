@@ -30,7 +30,7 @@ export default function ModelPicker() {
 
     }
     function changeModel(requestOptions) {
-        fetch('http://127.0.0.1:7860/sdapi/v1/options', requestOptions)
+        fetch('https://48cf06b0dea443c53e.gradio.live/sdapi/v1/options', requestOptions)
             .then(response => {
                 response.json()
             }
@@ -45,7 +45,7 @@ export default function ModelPicker() {
     useEffect(() => {
         if (models) {
             axios
-                .get('http://127.0.0.1:7860/sdapi/v1/sd-models', {
+                .get('https://48cf06b0dea443c53e.gradio.live/sdapi/v1/sd-models', {
                     headers: {
                         Accept: 'application/json'
                     }

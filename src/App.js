@@ -21,7 +21,7 @@ function setModelPost() {
 
 }
 function changeModel(requestOptions) {
-    fetch('http://127.0.0.1:7860/sdapi/v1/options', requestOptions)
+    fetch('https://48cf06b0dea443c53e.gradio.live/sdapi/v1/options', requestOptions)
         .then(response => {
             response.json()
         }
@@ -40,7 +40,7 @@ function setImagePost(){
     
 }
 function GenerateImage(requestOptions) {
-    fetch('http://127.0.0.1:7860/sdapi/v1/txt2img', requestOptions)
+    fetch('https://48cf06b0dea443c53e.gradio.live/sdapi/v1/txt2img', requestOptions)
         .then(response => response.json())
         .then(data => {
             sessionStorage.setItem('image', data.images[0])
