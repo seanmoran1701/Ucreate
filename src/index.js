@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import ModelPicker from './modelPicker';
+import ModelPicker from './ModelPicker';
 import reportWebVitals from './reportWebVitals';
 import {createBrowserRouter, RouterProvider, Route} from 'react-router-dom'
 
