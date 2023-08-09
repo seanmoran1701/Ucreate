@@ -44,6 +44,7 @@ function GenerateImage(requestOptions) {
         .then(response => response.json())
         .then(data => {
             sessionStorage.setItem('image', data.images[0])
+            
             window.location.reload(false);
         }
         );
