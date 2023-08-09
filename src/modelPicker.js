@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 
 //import InfoIcon from '@mui/icons-material/Info';
 
-export default function modelPicker() {
+export default function ModelPicker() {
     //sd_model_checkpoint:
     
     const [models, setModels] = useState([]);
