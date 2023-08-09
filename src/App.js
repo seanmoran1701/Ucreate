@@ -7,7 +7,10 @@ import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
 import DisplayImage from './DisplayImage';
 
-
+function getPublicURL() {
+    const URL = 'https://ce819fbf2753bf8add.gradio.live';
+    return URL;
+}
 
 function setModelPost() {
     console.log(sessionStorage.getItem('model'));
@@ -21,7 +24,7 @@ function setModelPost() {
 
 }
 function changeModel(requestOptions) {
-    fetch('https://48cf06b0dea443c53e.gradio.live/sdapi/v1/options', requestOptions)
+    fetch(getPublicURL()+'/sdapi/v1/options', requestOptions)
         .then(response => {
             response.json()
         }
@@ -40,7 +43,7 @@ function setImagePost(){
     
 }
 function GenerateImage(requestOptions) {
-    fetch('https://48cf06b0dea443c53e.gradio.live/sdapi/v1/txt2img', requestOptions)
+    fetch(getPublicURL()+'/sdapi/v1/txt2img', requestOptions)
         .then(response => response.json())
         .then(data => {
             sessionStorage.setItem('image', data.images[0])

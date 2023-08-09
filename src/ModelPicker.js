@@ -11,38 +11,14 @@ import { Link } from 'react-router-dom';
 //import InfoIcon from '@mui/icons-material/Info';
 
 export default function ModelPicker() {
-    //sd_model_checkpoint:
-    
-    const [models, setModels] = useState([]);
-    const [picked, setPicked] = useState([]);
-    const [modelCount, setModelCount] = useState(0);
 
-    function setModelPost(modelNumber) {
-        console.log(models[0].model_name);
-        console.log(modelNumber);
-        const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ sd_model_checkpoint: `${models[modelNumber].model_name}` })
-        };
-
-        changeModel(requestOptions);
-
-    }
-    function changeModel(requestOptions) {
-        fetch('https://48cf06b0dea443c53e.gradio.live/sdapi/v1/options', requestOptions)
-            .then(response => {
-                response.json()
-            }
-            );
-    }
     function updateModel(modelName){
         sessionStorage.setItem('model', modelName);
         sessionStorage.setItem('image', defaultImage);
         console.log("working");
     }
 
-    useEffect(() => {
+    /*useEffect(() => {
         if (models) {
             axios
                 .get('https://48cf06b0dea443c53e.gradio.live/sdapi/v1/sd-models', {
@@ -58,7 +34,7 @@ export default function ModelPicker() {
         }
     },
         []
-    );
+    );*/
 
     return (
         <div>
