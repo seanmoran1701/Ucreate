@@ -14,7 +14,7 @@ import DisplayImage from './DisplayImage';
 
 //find way to automatically update URL before session timeout
 function getPublicURL() {
-    const URL = 'https://5508b14dd84396d1f0.gradio.live';
+    const URL = 'https://8e512f631cbffdc589.gradio.live';
     return URL;
 }
 
