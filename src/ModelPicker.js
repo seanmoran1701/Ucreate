@@ -12,9 +12,13 @@ import { Link } from 'react-router-dom';
 
 export default function ModelPicker() {
 
-    function updateModel(modelName){
+    function updateModel(modelName, loraText, keywords, info){
         sessionStorage.setItem('model', modelName);
+        sessionStorage.setItem('loraText', loraText);
+        sessionStorage.setItem('keywords', keywords);
+        sessionStorage.setItem('info', info);
         sessionStorage.setItem('image', defaultImage);
+
         console.log("working");
     }
 
@@ -38,15 +42,17 @@ export default function ModelPicker() {
 
     return (
         <div>
+            <header className="gallery-header">
+                IMAGE STYLES
+            </header>
+        <div className="gallery">
             
-        <ImageList sx={{ width: 500, height: 450 }}>
-
-
+            <ImageList className="gallery2">
             <ImageListItem key="Subheader" cols={2}>
-                <ListSubheader component="div">STYLES</ListSubheader>
+                
             </ImageListItem>
             {itemData.map((item) => (
-                <Link to="/generator" onClick={() => updateModel(item.modelName)}>
+                <Link to="/generator" onClick={() => updateModel(item.modelName,item.loraText,item.keywords,item.moreInfo)}>
                 <ImageListItem key={item.img}>
                    
                     <img
@@ -67,6 +73,7 @@ export default function ModelPicker() {
             ))}
             </ImageList>
             </div>
+        </div>
     );
 }
 
@@ -80,72 +87,52 @@ const itemData = [
         cols: 2,
         featured: true,
         modelName: "sd-v1-4",
+        loraText: "",
+        keywords: "None",
     },
     {
         img: 'https://64.media.tumblr.com/27b10067c017f9ed99b2e1da830fa241/99cc5a09eb24cca6-59/s540x810/b4e6d92e4f2998fd92d4968459591be0c88d186b.pnj',
         title: 'Anime Toon',
         author: '@rollelflex_graphy726',
         modelName: "mistoonAnime_v20",
+        loraText: "",
+        keywords: "None",
     },
     {
         img: 'https://64.media.tumblr.com/9cce873726d715efa27590047852c174/41c19f28b3adafed-00/s540x810/acac3d02fe1c24249149569d61115393c691a504.pnj',
         title: 'HR Realism',
         author: '@helloimnik',
         modelName: "xxmix9realistic_v40",
+        loraText: "",
+        keywords: "None",
     },
     {
-        img: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c',
-        title: 'Coffee',
+        img: 'https://64.media.tumblr.com/2b43c4f882a04cc27578617e3da099f7/dc0bb4dd1a03b122-e2/s540x810/d604d8d1c1557678869ad8f163d581c9430d624b.pnj',
+        title: 'Genshin Impact Anime',
         author: '@nolanissac',
         cols: 2,
+        modelName: "mistoonAnime_v20",
+        loraText: "<lora:genshinfull1:1>",
+        keywords: "KUKISHINOBUDEF, LUMINEDEF, DORIDEF, FISCHLDEF, KEQINGDEF, LISADEF, RAIDENSHOGUNDEF, YAEMIKODEF, KUJOUSARADEF, BEIDOUDEF, DIONADEF,\
+        GANYUDEF, KAMISATOAYAKADEF, SHENHEDEF, EULADEF, ROSARIADEF, QIQIDEF, LAYLADEF, NILOUDEF, KOKOMIDEF, YELANDEF, MONADEF, BARBARADEF, CANDACEDEF,\
+        COLLEIDEF, YAOYAODEF, NAHIDADEF, FARUZANDEF, JEANFAVONIAN, SUCROSEDEF, SAYUDEF, XIANGLINGDEF, DEHYADEF, YOIMIYADEF, KLEEDEF, HUTAODEF, XINYANDEF\
+        AMBER5STAR, YANFEIDEF, NOELLEDEF, YUNJINDEF, NINGGUANGDEF",
+        moreInfo: 'Genshin Impact characters each have their own specific keyword.'
     },
     {
-        img: 'https://images.unsplash.com/photo-1533827432537-70133748f5c8',
-        title: 'Hats',
+        img: 'https://64.media.tumblr.com/5cb7351ed17d5a2f9f1d5f907ecada9c/f99cffcdf6fec66b-2f/s540x810/c34ca7e987213b737c0b2fdac7c99c4f4babe1a5.pnj',
+        title: 'Genshin Impact Realistic',
         author: '@hjrc33',
         cols: 2,
+        modelName: "xxmix9realistic_v40",
+        loraText: "<lora:genshinfull1:1>",
+        keywords: "KUKISHINOBUDEF, LUMINEDEF, DORIDEF, FISCHLDEF, KEQINGDEF, LISADEF, RAIDENSHOGUNDEF, YAEMIKODEF, KUJOUSARADEF, BEIDOUDEF, DIONADEF,\
+        GANYUDEF, KAMISATOAYAKADEF, SHENHEDEF, EULADEF, ROSARIADEF, QIQIDEF, LAYLADEF, NILOUDEF, KOKOMIDEF, YELANDEF, MONADEF, BARBARADEF, CANDACEDEF,\
+        COLLEIDEF, YAOYAODEF, NAHIDADEF, FARUZANDEF, JEANFAVONIAN, SUCROSEDEF, SAYUDEF, XIANGLINGDEF, DEHYADEF, YOIMIYADEF, KLEEDEF, HUTAODEF, XINYANDEF\
+        AMBER5STAR, YANFEIDEF, NOELLEDEF, YUNJINDEF, NINGGUANGDEF",
+        moreInfo: 'Genshin Impact characters each have their own specific keyword.'
     },
-    {
-        img: 'https://images.unsplash.com/photo-1558642452-9d2a7deb7f62',
-        title: 'Honey',
-        author: '@arwinneil',
-        rows: 2,
-        cols: 2,
-        featured: true,
-    },
-    {
-        img: 'https://images.unsplash.com/photo-1516802273409-68526ee1bdd6',
-        title: 'Basketball',
-        author: '@tjdragotta',
-    },
-    {
-        img: 'https://images.unsplash.com/photo-1518756131217-31eb79b20e8f',
-        title: 'Fern',
-        author: '@katie_wasserman',
-    },
-    {
-        img: 'https://images.unsplash.com/photo-1597645587822-e99fa5d45d25',
-        title: 'Mushrooms',
-        author: '@silverdalex',
-        rows: 2,
-        cols: 2,
-    },
-    {
-        img: 'https://images.unsplash.com/photo-1567306301408-9b74779a11af',
-        title: 'Tomato basil',
-        author: '@shelleypauls',
-    },
-    {
-        img: 'https://images.unsplash.com/photo-1471357674240-e1a485acb3e1',
-        title: 'Sea star',
-        author: '@peterlaster',
-    },
-    {
-        img: 'https://images.unsplash.com/photo-1589118949245-7d38baf380d6',
-        title: 'Bike',
-        author: '@southside_customs',
-        cols: 2,
-    },
+    
 ];
 
 const defaultImage = "iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAPFBMVEXrq6uYmJiFhYVycnJhYWFkZGRBQUGxsbEAAAArKyszMzM+Pj5JSUlQUFBoaGiSkpKMjIx+fn54eHgKjnX1AAABfElEQVR4nO3dTU7dMABGUee9BB605Xf/e4UBEzopqhRZNznHG/ju0JIlj4fHX7//PD1t2/a8frp+ebl8s/y/yz+9Xn/gbf2J7W939+N5HNttrLMn7Gw5QeH77Ak7W8Z19oSdKexT2KewT2Gfwr4zFL7OnrCzZVxmT9iZwj6FfQr7FPYp7FPYp7BPYZ/CPoV9CvsU9insU9insE9h3/J5jk1hn8I+hX0K+xT2KexT2KewT2Gfwj6FfQr7FPYp7FPYp7BPYZ/CPoV9Zyg8/oshhXUK+xT2KexT2KewT2Gfwj6FfQr7FPYp7FPYp7BPYZ/CPoV9CvsU9p2h8GX2hJ2d4Z8ZhXUK+xT2KexT2KewT2Gfwj6FfQr7FPYp7FPYp7BPYZ/CPoV9CvuWsc6esDOFfQr7FPYp7FPYp7BPYZ/CPoV9CvsU9insU9insE9hn8I+hX0K+5ZxN3vCzpaxzZ6wM4V9CvsU9insU9insE9h3xkKj34Dvo3723Jkt/UD4p4HN3xcuaQAAAAASUVORK5CYII=";

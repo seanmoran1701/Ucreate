@@ -5,10 +5,12 @@ import Textbox from './Textbox'
 import './App.css';
 import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
+import Popup from './Popup';
+import MoreInfo from './MoreInfo';
 import DisplayImage from './DisplayImage';
 
 function getPublicURL() {
-    const URL = 'https://ce819fbf2753bf8add.gradio.live';
+    const URL = 'https://5508b14dd84396d1f0.gradio.live';
     return URL;
 }
 
@@ -36,13 +38,14 @@ function setImagePost(){
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ prompt: `${sessionStorage.getItem('prompt')}`, steps: 20 })
+        body: JSON.stringify({ prompt: `${sessionStorage.getItem('loraText')+sessionStorage.getItem('prompt')}`, steps: 20 })
     };
     
     GenerateImage(requestOptions);
     
 }
 function GenerateImage(requestOptions) {
+    console.log(sessionStorage.getItem('loraText') + sessionStorage.getItem('prompt'));
     fetch(getPublicURL()+'/sdapi/v1/txt2img', requestOptions)
         .then(response => response.json())
         .then(data => {
@@ -67,17 +70,28 @@ function App(props) {
     return (
       
     <div className="App">
-      <header className="App-header">
+            <header className="App-header">
+                {/* Back Button */}
                 <p style={{ position: 'absolute', top: 10, left: 10 }}>
                     <Link to="/">
                         <Button variant="contained">Back to Models</Button>
                     </Link>
-                 </p>
-              <img src={`data:image/jpeg;base64,${sessionStorage.getItem('image')}`} />
+                </p>
+                {/* Info Button */}
+                <p style={{ position: 'absolute', top: 10, right: 144 }}>
+                    <MoreInfo moreInfo={sessionStorage.getItem('info')}/>
+                </p>
+                {/* Keywords Button */}
+                <p style={{ position: 'absolute', top: 10, right: 10 }}>
+                    <Popup keywords={sessionStorage.getItem('keywords')}/>
+                </p>
+                {/* Display Generated Image */}
+                <img src={`data:image/jpeg;base64,${sessionStorage.getItem('image')}`} />
+                {/* Prompt Text Box */}
               <Textbox />
                 <Button variant="contained" onClick={() => setImagePost()}>Submit</Button>
-      </header>
-          <textbox />
+            </header>
+              
     </div>
   );
 }
