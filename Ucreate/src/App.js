@@ -9,6 +9,9 @@ import Popup from './Popup';
 import MoreInfo from './MoreInfo';
 import DisplayImage from './DisplayImage';
 
+
+
+
 //find way to automatically update URL before session timeout
 function getPublicURL() {
     const URL = 'https://5508b14dd84396d1f0.gradio.live';
@@ -61,6 +64,14 @@ function GenerateImage(requestOptions) {
 function App(props) {
     const [image, setImage] = useState([]);
 
+    const [wordData, setWordData] = useState({});
+    useEffect(() => {
+        fetch('http://localhost:1234/api/word') // Update with your actual API endpoint
+            .then(response => response.json())
+            .then(data => setWordData(data))
+            .catch(error => console.error('Error fetching data:', error));
+    }, []);
+
     useEffect(() => {
         let ignore = false;
 
@@ -72,6 +83,8 @@ function App(props) {
       
     <div className="App">
             <header className="App-header">
+                {/*<h1>Word: {wordData.word}</h1>
+                <p>Definition: {wordData.definition}</p>*/}
                 {/* Back Button */}
                 <p style={{ position: 'absolute', top: 10, left: 10 }}>
                     <Link to="/">
