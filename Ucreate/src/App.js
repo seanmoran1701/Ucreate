@@ -34,7 +34,7 @@ async function waitForTurn(top) {
 
 //get top of queue to pass to waitForTurn function
 function getTopQueue() {
-        fetch('http://localhost:1234/api/peekQ') 
+    fetch('https://ucreate-production.up.railway.app/api/peekQ')
             .then(response => response.json())
             .then(data => {
                 console.log(data.model);
@@ -116,7 +116,7 @@ function queuePost(model, isDequeue) {
 }
 //execute post request for queueing and dequeuing
 function queue(requestOptions) {
-    fetch('http://localhost:1234/api/queue', requestOptions)
+    fetch('https://ucreate-production.up.railway.app/api/queue', requestOptions)
         .then(response => {
             response.json()
         })
