@@ -1,14 +1,24 @@
+import React, { useState, useEffect } from 'react';
 
-export default function DisplayImage(props) {
-	function forceUpdate(){
+function DisplayImage() {
+    const [imageSrc, setImageSrc] = useState(sessionStorage.getItem('imageSrc'));
 
-		this.forceUpdate();
+    // Listen for changes in sessionStorage
+    useEffect(() => {
+        const handleStorageChange = (e) => {
+            if (e.key === 'imageSrc') {
+                setImageSrc(e.newValue);
+            }
+        };
 
-	}
-	const image = props.image;
-	return (
-		<div>
-			<img src={`data:image/jpeg;base64,${image}`} />
-		</div>
-	)
+        window.addEventListener('storage', handleStorageChange);
+
+        return () => {
+            window.removeEventListener('storage', handleStorageChange);
+        };
+    }, []);
+
+    return <img src={imageSrc} alt="Dynamic Image" />;
 }
+
+export default DisplayImage;

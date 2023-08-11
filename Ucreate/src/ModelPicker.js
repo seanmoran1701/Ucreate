@@ -17,7 +17,7 @@ export default function ModelPicker() {
         sessionStorage.setItem('loraText', loraText);
         sessionStorage.setItem('keywords', keywords);
         sessionStorage.setItem('info', info);
-        sessionStorage.setItem('image', defaultImage);
+        
 
         console.log("working");
     }
@@ -135,5 +135,5 @@ const itemData = [
     
 ];
 
-const defaultImage = "iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAPFBMVEXrq6uYmJiFhYVycnJhYWFkZGRBQUGxsbEAAAArKyszMzM+Pj5JSUlQUFBoaGiSkpKMjIx+fn54eHgKjnX1AAABfElEQVR4nO3dTU7dMABGUee9BB605Xf/e4UBEzopqhRZNznHG/ju0JIlj4fHX7//PD1t2/a8frp+ebl8s/y/yz+9Xn/gbf2J7W939+N5HNttrLMn7Gw5QeH77Ak7W8Z19oSdKexT2KewT2Gfwr4zFL7OnrCzZVxmT9iZwj6FfQr7FPYp7FPYp7BPYZ/CPoV9CvsU9insU9insE9h3/J5jk1hn8I+hX0K+xT2KexT2KewT2Gfwj6FfQr7FPYp7FPYp7BPYZ/CPoV9Zyg8/oshhXUK+xT2KexT2KewT2Gfwj6FfQr7FPYp7FPYp7BPYZ/CPoV9CvsU9p2h8GX2hJ2d4Z8ZhXUK+xT2KexT2KewT2Gfwj6FfQr7FPYp7FPYp7BPYZ/CPoV9CvuWsc6esDOFfQr7FPYp7FPYp7BPYZ/CPoV9CvsU9insU9insE9hn8I+hX0K+5ZxN3vCzpaxzZ6wM4V9CvsU9insU9insE9h3xkKj34Dvo3723Jkt/UD4p4HN3xcuaQAAAAASUVORK5CYII=";
+
 
