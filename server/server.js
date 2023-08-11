@@ -51,7 +51,7 @@ const corsOptions = {
 };
 
 //set CORS options
-app.use(cors(corsOptions));
+app.use(cors());
 
 //endpoint for retreiving front of queue
 app.get('/api/peekQ', (req, res) => {
