@@ -68,7 +68,7 @@ app.post('/api/queue', jsonParser, (req, res) => {
     console.log(req.body.dequeue);
     queueHandler(req.body.model,req.body.dequeue)
 });
-const port = process.env.PORT || 1234;
+const port = process.env.PORT || 3000;
 app.listen(port, "0.0.0.0", () => { console.log("Server started on port 1234") })
 
 //handles whether to queue or dequeue model
