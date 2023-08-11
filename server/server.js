@@ -1,6 +1,6 @@
 const express = require('express')
 const cors = require('cors');
-const fs = require('fs');
+
 var bodyParser = require('body-parser')
 const app = express()
 
@@ -68,8 +68,8 @@ app.post('/api/queue', jsonParser, (req, res) => {
     console.log(req.body.dequeue);
     queueHandler(req.body.model,req.body.dequeue)
 });
-
-app.listen(1234, () => { console.log("Server started on port 1234") })
+const port = process.env.PORT || 1234;
+app.listen(port, "0.0.0.0", () => { console.log("Server started on port 1234") })
 
 //handles whether to queue or dequeue model
 function queueHandler(model, isDequeue) {
@@ -79,4 +79,5 @@ function queueHandler(model, isDequeue) {
         queue.dequeue(model);
     }
 }
+
 
